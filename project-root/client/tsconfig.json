@@ -1,0 +1,42 @@
+{
+  "compilerOptions": {
+    // 编译目标 ES5 版本
+    "target": "es5",
+    // 需要包含的库文件
+    "lib": [
+      "dom",          // DOM 操作相关
+      "dom.iterable", // DOM 迭代器
+      "esnext"        // 最新的 ECMAScript 特性
+    ],
+    // 允许编译 JavaScript 文件
+    "allowJs": true,
+    // 跳过声明文件的类型检查
+    "skipLibCheck": true,
+    // 启用 CommonJS 和 ES 模块之间的互操作性
+    "esModuleInterop": true,
+    // 允许从没有默认导出的模块中默认导入
+    "allowSyntheticDefaultImports": true,
+    // 启用所有严格类型检查选项
+    "strict": true,
+    // 强制文件名大小写一致
+    "forceConsistentCasingInFileNames": true,
+    // 防止 switch 语句中的 case 贯穿
+    "noFallthroughCasesInSwitch": true,
+    // 使用 ES 模块语法
+    "module": "esnext",
+    // 使用 Node.js 风格的模块解析
+    "moduleResolution": "node",
+    // 允许导入 JSON 文件
+    "resolveJsonModule": true,
+    // 确保每个文件都是模块
+    "isolatedModules": true,
+    // 不输出编译文件
+    "noEmit": true,
+    // 使用 React 17 新的 JSX 转换
+    "jsx": "react-jsx"
+  },
+  // 需要编译的文件目录
+  "include": [
+    "src"
+  ]
+} 

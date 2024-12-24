@@ -1,0 +1,17 @@
+# Node
+node_modules/
+/client/build
+/client/.env
+
+# Python
+__pycache__/
+*.py[cod]
+venv/
+.env
+
+# IDE
+.vscode/
+.idea/
+
+# 系统文件
+.DS_Store 
