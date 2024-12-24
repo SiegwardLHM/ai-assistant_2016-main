@@ -8,6 +8,11 @@ from fastapi.middleware.cors import CORSMiddleware
 # 导入聊天相关的路由模块
 from app.api import chat
 from app.api import auth
+from app.database import engine
+from app.models import user
+
+# 创建数据库表
+user.Base.metadata.create_all(bind=engine)
 
 # 创建FastAPI应用实例
 # 这个实例将处理所有的HTTP请求

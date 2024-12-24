@@ -7,64 +7,64 @@
 - React 18 + TypeScript (基础框架)
 - Ant Design 5.x (UI组件库)
 - Axios (HTTP请求)
-- React-Markdown (Markdown渲染)
-- PrismJS (代码高亮)
+- React Router (路由管理)
 
 #### 后端技术
 - Python 3.9+ + FastAPI (Web框架)
-- Uvicorn (ASGI服务器)
-- Anthropic Claude API / OpenAI API (AI服务)
+- SQLAlchemy + MySQL (数据库)
+- 百度文心一言 API (AI服务)
 - Pydantic (数据验证)
 
 ### 1.2 核心功能模块
+- 用户认证系统
 - AI对话系统
-- Markdown渲染
-- 代码高亮
+- 数据持久化存储
 
 ## 2. 项目结构
 
-project-root/
+project-root/                         # 项目根目录
+├── README.md                        # 项目说明文档
+├── project_plan.md                  # 项目计划文档
 ├── client/                          # 前端项目目录
-│   ├── public/                     # 公共资源目录
-│   │   ├── index.html             # HTML入口文件
-│   │   ├── manifest.json          # PWA配置文件
-│   │   ├── favicon.ico            # 网站图标
-│   │   ├── logo192.png           # 小尺寸logo
-│   │   └── logo512.png           # 大尺寸logo
-│   ├── package.json               # npm 配置文件
-│   ├── package-lock.json         # npm 依赖锁定文件
-│   ├── tsconfig.json             # TypeScript 配置
+│   ├── public/                      # 公共资源目录
+│   │   ├── index.html              # HTML入口文件
+│   │   ├── manifest.json           # PWA配置文件
+│   │   ├── favicon.ico             # 网站图标
+│   │   └── robots.txt              # 搜索引擎配置
 │   ├── src/
-│   │   ├── components/            # React组件
-│   │   │   ├── Chat/             # 对话组件
-│   │   │   │   ├── ChatInput.tsx    # 输入框
-│   │   │   │   ├── ChatMessage.tsx  # 消息气泡
-│   │   │   │   └── ChatWindow.tsx   # 对话窗口
-│   │   │   └── Common/           # 通用组件
-│   │   │       └── Loading.tsx      # 加载状态
-│   │   ├── services/             # API服务
-│   │   │   └── api.ts             # API封装
-│   │   ├── styles/               # 样式文件
-│   │   │   └── index.css          # 全局样式
-│   │   ├── types/                # 类型定义文件
-│   │   │   └── chat.d.ts          # 聊天相关类型
+│   │   ├── components/             # React组件
+│   │   │   ├── Auth/              # 认证相关组件
+│   │   │   │   ├── Login.tsx      # 登录组件
+│   │   │   │   └── Register.tsx   # 注册组件
+│   │   │   └── Chat/              # 对话组件
+│   │   │       ├── ChatInput.tsx  # 输入框组件
+│   │   │       ├── ChatMessage.tsx # 消息气泡组件
+│   │   │       └── ChatWindow.tsx # 对话窗口组件
+│   │   ├── services/              # API服务
+│   │   │   └── api.ts            # API封装
+│   │   ├── styles/                # 样式文件
+│   │   │   └── index.css         # 全局样式
 │   │   ├── App.tsx               # 应用入口
 │   │   └── index.tsx             # 项目入口
+│   ├── package.json              # npm配置文件
+│   └── tsconfig.json            # TypeScript配置
 │
-├── server/                        # 后端项目目录
-│   ├── app/
-│   │   ├── api/                  # API路由
-│   │   │   ├── __init__.py
-│   │   │   └── chat.py           # 对话接口
-│   │   ├── services/             # 业务逻辑
-│   │   │   ├── __init__.py
-│   │   │   └── ai_service.py     # AI服务
-│   │   └── main.py              # 应用入口
-│   ├── .env.example             # 环境变量示例
-│   └── requirements.txt         # Python依赖
-│
-├── .gitignore                    # Git忽略文件
-└── README.md                     # 项目说明
+└── server/                       # 后端项目目录
+    ├── requirements.txt         # Python依赖文件
+    ├── api_responses.log       # API响应日志
+    └── app/
+        ├── api/                 # API路由
+        │   ├── __init__.py     # 包初始化文件
+        │   ├── auth.py         # 认证接口
+        │   └── chat.py         # 对话接口
+        ├── models/             # 数据模型
+        │   ├── __init__.py     # 包初始化文件
+        │   └── user.py         # 用户模型
+        ├── services/           # 业务逻辑
+        │   ├── __init__.py     # 包初始化文件
+        │   └── ai_service.py   # AI服务
+        ├── database.py         # 数据库配置
+        └── main.py            # 应用入口
 
 ### 2.1 前端目录说明
 - components/: 核心UI组件
