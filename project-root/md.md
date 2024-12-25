@@ -161,7 +161,7 @@ OPENAI_API_KEY=your_openai_api_key
 CORS_ORIGINS=http://localhost:3000
 LOG_LEVEL=DEBUG
 ```
-
+ 
 ### 3.4 数据库配置
 1. 安装 MySQL (>= 5.7)
 2. 创建数据库和用户：
@@ -183,6 +183,7 @@ npm start
 
 2. 启动后端服务器：
 ```bash
+venv\Scripts\activate
 cd server
 uvicorn app.main:app --reload --port 8000
 ```

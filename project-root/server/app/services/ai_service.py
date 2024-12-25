@@ -14,8 +14,15 @@ load_dotenv()
 class AIService:
     SYSTEM_PROMPTS = {
         ChatMode.GENERAL: """你是一个通用AI助手，提供友好的对话和帮助。""",
-        ChatMode.CODE: """你是一个专业的程序员助手，专注于代码相关问题。
-        请提供详细的技术解答，并在适当时包含代码示例。"""
+        ChatMode.CODE: """你是一个专业的程序员助手，请遵循以下准则：
+        1. 提供清晰、详细的技术解答，重点关注代码质量和最佳实践
+        2. 代码示例要包含必要的注释说明
+        3. 对于bug修复，先分析问题根源，再提供解决方案
+        4. 建议采用模块化和可维护的代码结构
+        5. 注意代码的性能优化和安全性考虑
+        6. 如果涉及多种解决方案，请说明各个方案的优缺点
+        7. 提供相关的文档链接或进一步学习资源
+        8. 使用清晰的代码格式化，保持一致的编码风格"""
     }
 
     def __init__(self):
@@ -34,29 +41,21 @@ class AIService:
         params = {"grant_type": "client_credentials", "client_id": API_KEY, "client_secret": SECRET_KEY}
         return str(requests.post(url, params=params).json().get("access_token"))
 
-    async def get_response(self, message: str, mode: ChatMode) -> str:
+    def get_response(self, content: str, mode: str) -> str:
         try:
-            # 8. 记录方法调用
-            print(f"AI Service processing message: {message}")
+            # 将 system prompt 和用户内容合并到一条消息中
+            full_content = f"{self.SYSTEM_PROMPTS[mode]}\n\n{content}"
             
-            # 9. 检查配置
-            if not API_KEY or not SECRET_KEY:
-                raise ValueError("API credentials not configured")
-                
-            system_prompt = self.SYSTEM_PROMPTS[mode]
+            # 构建消息列表 - 只使用 user 角色
             messages = [
-                {"role": "system", "content": system_prompt},
-                {"role": "user", "content": message}
+                {"role": "user", "content": full_content}
             ]
             
-            # 调用AI服务获取响应
-            response = self._call_ai_api(messages)
-            return response
-
+            # 调用 AI API 获取响应
+            return self._call_ai_api(messages)
+            
         except Exception as e:
-            # 10. 记录具体错误
-            print(f"AI Service error: {type(e)} - {str(e)}")
-            raise
+            raise Exception(f"处理消息时出错: {str(e)}")
 
     def _call_ai_api(self, messages: list) -> str:
         try:

@@ -20,12 +20,7 @@ const api = axios.create({
  //导出发送消息的异步函数，接收消息内容作为参数
 export const sendMessage = async (content: string, mode: ChatMode) => {
   try {
-    // 添加日志记录
-    console.log('Sending message:', { content, mode });
-    
     const response = await api.post('/api/chat', { content, mode });
-    console.log('Response received:', response.data);
-    
     return response.data;
   } catch (error: any) {
     console.error('API Error:', {

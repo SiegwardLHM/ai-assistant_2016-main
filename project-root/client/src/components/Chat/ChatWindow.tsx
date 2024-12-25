@@ -62,7 +62,11 @@ const ChatWindow: React.FC = () => {
     } catch (error) {
       // 捕获并记录任何可能发生的错误
       console.error('发送消息失败:', error);
-      // 这里可以添加错误提示UI展示
+      // 添加错误提示
+      setMessages(prev => [...prev, { 
+        type: 'ai', 
+        content: '抱歉，处理消息时出现错误，请稍后重试。' 
+      }]);
     } finally {
       // 无论成功还是失败，都需要关闭加载状态
       setLoading(false);
