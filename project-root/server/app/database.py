@@ -4,7 +4,7 @@ from sqlalchemy.orm import sessionmaker
 from sqlalchemy import text
 
 # MySQL连接URL - 使用你的chatdb数据库配置
-SQLALCHEMY_DATABASE_URL = "mysql+pymysql://chat:123456@localhost/chatdb"
+SQLALCHEMY_DATABASE_URL = "mysql+pymysql://root:root@localhost/chatdb"
 
 # 创建数据库引擎
 engine = create_engine(SQLALCHEMY_DATABASE_URL)

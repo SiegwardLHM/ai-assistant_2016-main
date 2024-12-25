@@ -117,6 +117,112 @@ project-root/                         # 项目根目录
 - NPM >= 7.x
 - pip >= 21.x
 
+## 3. 环境配置与运行说明
+
+### 3.1 前端环境配置
+1. 确保安装 Node.js (>= 16.x) 和 npm (>= 7.x)
+2. 进入前端项目目录：
+3. 安装依赖：npm install
+
+### 3.2 后端环境配置
+1. 安装 Python (>= 3.9)
+2. 创建并激活虚拟环境：
+```bash
+cd server
+python -m venv venv
+
+# Windows
+venv\Scripts\activate
+
+# Linux/Mac
+source venv/bin/activate
+```
+3. 更新 pip：
+```bash
+python -m pip install --upgrade pip
+```
+4. 安装依赖：
+```bash
+pip install -r requirements.txt
+```
+
+### 3.3 环境变量配置
+
+1. 在 client 目录创建 .env 文件：
+```plaintext
+REACT_APP_API_BASE_URL=http://localhost:8000
+REACT_APP_ENV=development
+```
+
+2. 在 server 目录创建 .env 文件：
+```plaintext
+CLAUDE_API_KEY=your_claude_api_key
+OPENAI_API_KEY=your_openai_api_key
+CORS_ORIGINS=http://localhost:3000
+LOG_LEVEL=DEBUG
+```
+
+### 3.4 数据库配置
+1. 安装 MySQL (>= 5.7)
+2. 创建数据库和用户：
+```sql
+CREATE DATABASE chatdb;
+CREATE USER 'chat'@'localhost' IDENTIFIED BY '123456';
+GRANT ALL PRIVILEGES ON chatdb.* TO 'chat'@'localhost';
+FLUSH PRIVILEGES;
+```
+
+### 3.5 启动项目
+
+1. 启动前端开发服务器：
+```bash
+cd client
+npm start
+```
+前端服务将在 http://localhost:3000 运行
+
+2. 启动后端服务器：
+```bash
+cd server
+uvicorn app.main:app --reload --port 8000
+```
+后端服务将在 http://localhost:8000 运行
+
+### 3.6 常见问题处理
+
+1. 如果 npm install 失败：
+```bash
+# 清理 npm 缓存
+npm cache clean --force
+# 删除 node_modules
+rm -rf node_modules
+# 重新安装
+npm install
+```
+
+2. 如果 pip install 失败：
+```bash
+# 使用国内镜像源
+pip install -r requirements.txt -i https://pypi.tuna.tsinghua.edu.cn/simple
+```
+
+3. 检查依赖是否安装成功：
+```bash
+# 检查前端依赖
+npm list react
+npm list antd
+
+# 检查后端依赖
+pip list | findstr "fastapi"
+pip show fastapi
+```
+
+### 3.7 注意事项
+- 确保 MySQL 服务已启动
+- 检查数据库连接配置是否正确
+- 确保所有环境变量都已正确设置
+- 前后端服务需要同时运行
+- 建议使用管理员权限运行命令行工具
 
 
 

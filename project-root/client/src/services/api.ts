@@ -19,18 +19,23 @@ const api = axios.create({
 // 导出发送消息的异步函数，接收消息内容作为参数
 export const sendMessage = async (content: string) => {
   try {
-    // 发送 POST 请求到 /api/chat 端点，携带消息内容
+    // 1. 首先在这里添加日志，查看发送的数据
+    console.log('Sending message:', { content });
+    
     const response = await api.post('/api/chat', { content });
-    // 返回服务器响应的数据
+    // 2. 查看响应数据
+    console.log('Response received:', response.data);
+    
     return response.data;
-  } catch (error) {
-    // 如果发生错误，在控制台打印错误信息
-    console.error('Error sending message:', error);
-    // 将错误向上抛出，供调用者处理
+  } catch (error: any) {
+    // 3. 详细记录错误信息
+    console.error('API Error:', {
+      status: error.response?.status,
+      data: error.response?.data,
+      message: error.message
+    });
     throw error;
   }
-
-  
 }; 
 
 export const login = async (data: { username: string; password: string }) => {
@@ -61,17 +66,6 @@ export const chatApi = {
         'Content-Type': 'application/json',
       },
       body: JSON.stringify({ content, mode }),
-    });
-    return response.json();
-  },
-  
-  updateMode: async (conversationId: string, mode: ChatMode) => {
-    const response = await fetch(`/api/conversations/${conversationId}/mode`, {
-      method: 'PATCH',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({ mode }),
     });
     return response.json();
   }
