@@ -34,16 +34,29 @@ class AIService:
         params = {"grant_type": "client_credentials", "client_id": API_KEY, "client_secret": SECRET_KEY}
         return str(requests.post(url, params=params).json().get("access_token"))
 
-    def get_response(self, message: str, mode: ChatMode) -> str:
-        system_prompt = self.SYSTEM_PROMPTS[mode]
-        messages = [
-            {"role": "system", "content": system_prompt},
-            {"role": "user", "content": message}
-        ]
-        
-        # 调用AI服务获取响应
-        response = self._call_ai_api(messages)
-        return response
+    async def get_response(self, message: str, mode: ChatMode) -> str:
+        try:
+            # 8. 记录方法调用
+            print(f"AI Service processing message: {message}")
+            
+            # 9. 检查配置
+            if not API_KEY or not SECRET_KEY:
+                raise ValueError("API credentials not configured")
+                
+            system_prompt = self.SYSTEM_PROMPTS[mode]
+            messages = [
+                {"role": "system", "content": system_prompt},
+                {"role": "user", "content": message}
+            ]
+            
+            # 调用AI服务获取响应
+            response = self._call_ai_api(messages)
+            return response
+
+        except Exception as e:
+            # 10. 记录具体错误
+            print(f"AI Service error: {type(e)} - {str(e)}")
+            raise
 
     def _call_ai_api(self, messages: list) -> str:
         try:

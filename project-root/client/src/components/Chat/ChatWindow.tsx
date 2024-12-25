@@ -2,8 +2,10 @@
 import React, { useState } from 'react';
 import ChatInput from './ChatInput';
 import ChatMessage from './ChatMessage';
+import ChatHeader from './ChatHeader';
 import Loading from '../Common/Loading';
 import { sendMessage } from '../../services/api';
+import { ChatMode } from '../../types/chat';
 
 // 定义消息类型接口
 interface Message {
@@ -14,6 +16,12 @@ interface Message {
 // 聊天窗口组件定义
 const ChatWindow: React.FC = () => {
   // ================ 状态管理 ================
+  /**
+   * mode: 存储当前聊天模式的状态
+   * setMode: 更新聊天模式状态的函数
+   */
+  const [mode, setMode] = useState<ChatMode>('general');
+  
   /**
    * messages: 存储所有聊天消息的数组
    * setMessages: 更新消息数组的函数
@@ -44,7 +52,7 @@ const ChatWindow: React.FC = () => {
       }]);
       
       // 调用后端API发送消息并等待响应
-      const response = await sendMessage(content);
+      const response = await sendMessage(content, mode);
       
       // 将AI的回复添加到消息列表中
       setMessages(prev => [...prev, { 
@@ -61,10 +69,21 @@ const ChatWindow: React.FC = () => {
     }
   };
 
+  // 处理模式变更
+  const handleModeChange = (newMode: ChatMode) => {
+    setMode(newMode);
+  };
+
   // ================ 组件渲染 ================
   return (
     // 聊天窗口的最外层容器
     <div className="chat-window">
+      {/* 添加 ChatHeader 组件 */}
+      <ChatHeader 
+        currentMode={mode}
+        onModeChange={handleModeChange}
+      />
+      
       {/* 消息显示区域：包含所有历史消息和加载状态 */}
       <div className="messages">
         {/* 

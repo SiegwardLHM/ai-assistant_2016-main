@@ -7,7 +7,7 @@ interface ChatHeaderProps {
   currentMode: ChatMode;
 }
 
-export const ChatHeader: React.FC<ChatHeaderProps> = ({ onModeChange, currentMode }) => {
+const ChatHeader: React.FC<ChatHeaderProps> = ({ onModeChange, currentMode }) => {
   return (
     <div className="chat-header flex items-center justify-between p-4 border-b">
       <h2 className="text-lg font-medium">AI 助手</h2>
@@ -23,3 +23,5 @@ export const ChatHeader: React.FC<ChatHeaderProps> = ({ onModeChange, currentMod
     </div>
   );
 }; 
+
+export default ChatHeader;
