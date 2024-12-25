@@ -52,3 +52,27 @@ export const register = async (data: { username: string; password: string }) => 
     throw error;
   }
 }; 
+
+export const chatApi = {
+  sendMessage: async (content: string, mode: ChatMode) => {
+    const response = await fetch('/api/chat', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({ content, mode }),
+    });
+    return response.json();
+  },
+  
+  updateMode: async (conversationId: string, mode: ChatMode) => {
+    const response = await fetch(`/api/conversations/${conversationId}/mode`, {
+      method: 'PATCH',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({ mode }),
+    });
+    return response.json();
+  }
+}; 
