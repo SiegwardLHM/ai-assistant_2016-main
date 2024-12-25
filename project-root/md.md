@@ -37,11 +37,14 @@ project-root/                         # 项目根目录
 │   │   │   │   ├── Login.tsx      # 登录组件
 │   │   │   │   └── Register.tsx   # 注册组件
 │   │   │   └── Chat/              # 对话组件
-│   │   │       ├── ChatInput.tsx  # 输入框组件
-│   │   │       ├── ChatMessage.tsx # 消息气泡组件
-│   │   │       └── ChatWindow.tsx # 对话窗口组件
-│   │   ├── services/              # API服务
-│   │   │   └── api.ts            # API封装
+│   │   │       ├── ChatHeader.tsx  # 聊天头部组件(包含模式选择)
+│   │   │       ├── ChatInput.tsx   
+│   │   │       ├── ChatMessage.tsx 
+│   │   │       └── ChatWindow.tsx  # 对话窗口组件(修改)
+│   │   ├── types/                  # 类型定义目录
+│   │   │   └── chat.ts            # 聊天相关类型定义
+│   │   ├── services/              
+│   │   │   └── api.ts             # API封装(修改)
 │   │   ├── styles/                # 样式文件
 │   │   │   └── index.css         # 全局样式
 │   │   ├── App.tsx               # 应用入口
@@ -59,6 +62,8 @@ project-root/                         # 项目根目录
         │   └── chat.py         # 对话接口
         ├── models/             # 数据模型
         │   ├── __init__.py     # 包初始化文件
+        │   ├── conversation.py # 对话模型定义
+        │   ├── chat_mode.py    # 聊天模式枚举定义
         │   └── user.py         # 用户模型
         ├── services/           # 业务逻辑
         │   ├── __init__.py     # 包初始化文件
