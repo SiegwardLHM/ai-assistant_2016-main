@@ -95,4 +95,28 @@ html, body, #root {
 .auth-form h2 {
   text-align: center;
   margin-bottom: 24px;
+}
+
+/* 代码块样式 */
+pre[class*="language-"] {
+  margin: 1em 0;
+  padding: 1em;
+  border-radius: 4px;
+  background: #2d2d2d !important;
+  max-height: 500px;
+  overflow: auto;
+}
+
+code[class*="language-"] {
+  font-family: Consolas, Monaco, 'Andale Mono', 'Ubuntu Mono', monospace;
+  font-size: 14px;
+  line-height: 1.5;
+}
+
+/* 行内代码样式 */
+:not(pre) > code {
+  padding: 2px 5px;
+  background: #f5f5f5;
+  border-radius: 3px;
+  color: #d63384;
 } 
