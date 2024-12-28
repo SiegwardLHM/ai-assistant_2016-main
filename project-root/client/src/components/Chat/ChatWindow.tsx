@@ -80,8 +80,7 @@ const ChatWindow: React.FC = () => {
 
   // ================ 组件渲染 ================
   return (
-    // 聊天窗口的最外层容器
-    <div className="chat-window">
+    <div className="chat-window flex flex-col h-80 w-[800px] mx-auto border rounded-lg shadow-lg bg-white">
       {/* 添加 ChatHeader 组件 */}
       <ChatHeader 
         currentMode={mode}

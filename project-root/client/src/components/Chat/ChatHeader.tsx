@@ -9,17 +9,19 @@ interface ChatHeaderProps {
 
 const ChatHeader: React.FC<ChatHeaderProps> = ({ onModeChange, currentMode }) => {
   return (
-    <div className="chat-header flex items-center justify-between p-4 border-b">
-      <h2 className="text-lg font-medium">AI 助手</h2>
-      <Select
-        value={currentMode}
-        onChange={onModeChange}
-        style={{ width: 120 }}
-        options={[
-          { value: 'general', label: '普通模式' },
-          { value: 'code', label: '代码模式' }
-        ]}
-      />
+    <div className="chat-header flex flex-col items-center p-6 border-b border-gray-200 bg-white shadow-sm">
+      <h2 className="text-2xl font-semibold text-gray-800 mb-4">智能助教系统</h2>
+      <div className="flex items-center">
+        <Select
+          value={currentMode}
+          onChange={onModeChange}
+          style={{ width: 150 }}
+          options={[
+            { value: 'general', label: '普通模式' },
+            { value: 'code', label: '代码模式' }
+          ]}
+        />
+      </div>
     </div>
   );
 }; 

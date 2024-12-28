@@ -22,7 +22,16 @@ const Register: React.FC = () => {
   };
 
   return (
-    <div className="auth-container">
+    <div 
+      className="auth-container"
+      style={{
+        backgroundImage: 'url("/images/bg.jpg")',
+        backgroundSize: 'cover',
+        backgroundPosition: 'center',
+        backgroundRepeat: 'no-repeat',
+        minHeight: '100vh'
+      }}
+    >
       <Form
         name="register"
         className="auth-form"

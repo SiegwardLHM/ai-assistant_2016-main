@@ -25,7 +25,7 @@ const ChatInput = ({ onSend }: ChatInputProps): React.ReactElement => {
   const [message, setMessage] = useState('');
 
   // 定义发送消息的处理函数
-  // 当用户点击发送按钮或按下回车键时触发
+  // 当用户点击发送按钮或按下回车键时触���
   const handleSend = () => {
     // 检查消息是否为空（去除首尾空格后）
     if (message.trim()) {
